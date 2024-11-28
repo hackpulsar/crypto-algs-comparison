@@ -4,7 +4,7 @@ Benchmarking of AES, RSA and ECC.
 # Building
 After cloning this repo, navigate to the directory you cloned into.
 ```
-cmake -S . -B \bin
+cmake -S . -B /bin
 cd bin
 make
 ```
