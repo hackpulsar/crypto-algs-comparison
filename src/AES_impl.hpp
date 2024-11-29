@@ -5,7 +5,6 @@
 #include <openssl/evp.h>
 #include <string>
 #include "error_handler.h"
-#include "settings.h"
 
 namespace AES_impl {
     struct Cfg {

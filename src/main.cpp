@@ -97,23 +97,36 @@ static void PerformBenchmarks(const std::string& plaintext, int keySize, const s
     std::cout << "ECC Decrypted Plaintext: " << decrypted << std::endl;
 }
 
-int main() {
-    // Reading message to encrypt
-    std::string fileToEncrypt;
-    std::cout << "File to encrypt: ";
-    std::getline(std::cin, fileToEncrypt);
+int main(int argc, char *argv[]) {
+    if (argc > 0 && argc != 3) {
+        std::cout << "Usage: " << argv[0] << " <file_to_encrypt> <key_size>" <<  std::endl;
+        return 0;
+    }
+
+    std::string fileToEncrypt, plaintext;
+    int keySize;
+
+    if (argc == 0) {
+        // Reading message to encrypt
+        std::cout << "File to encrypt: ";
+        std::getline(std::cin, fileToEncrypt);
+
+        // Reading key size
+        std::cout << "Key size: ";
+        std::cin >> keySize;
+    } else if (argc == 3) {
+        fileToEncrypt = argv[1];
+        keySize = atoi(argv[2]);
+    }
 
     // Loading file
     std::ifstream fin(fileToEncrypt, std::ios::in | std::ios::binary);
     std::ostringstream oss;
     oss << fin.rdbuf();
-    std::string plaintext(oss.str());
+    plaintext = oss.str();
 
-    // Reading key size
-    int keySize;
-    std::cout << "Key size: ";
-    std::cin >> keySize;
-
+    // Running benchmarks
     PerformBenchmarks(plaintext, keySize, "benchmarks.txt");
+
     return 0;
 }

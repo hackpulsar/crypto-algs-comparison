@@ -2,13 +2,10 @@
 #define RSA_IMPL_H
 
 #include <openssl/rsa.h>
-#include <openssl/pem.h>
-#include <openssl/err.h>
 #include <string>
 #include <vector>
 
 #include "error_handler.h"
-#include "settings.h"
 
 namespace RSA_impl {
     struct RSA_Keychain {
